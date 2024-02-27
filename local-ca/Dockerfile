@@ -8,6 +8,6 @@ RUN rpm -i step-ca_amd64.rpm
 #create PKI/root+intermediate certs
 RUN export STEPPATH=/mnt/
 #generate CA
-step ca init --name="SI" --deployment-type standalone --password-file=/mnt/test --provisioner-password-file=/mnt/test2 --dns="SI.ca,1.2.3.4" --address=":443" --provisioner="njones@lanl.gov"  --remote-management
+step ca init --name="SI" --deployment-type standalone --password-file=/mnt/test --provisioner-password-file=/mnt/test2 --dns="SI.ca,172.17.0.1" --address=":443" --provisioner="njones@lanl.gov"  --remote-management
 #need a mountpoint on /mnt
 ENTRYPOINT step-ca  --password-file=/mnt/test /mnt/config/ca.json 
