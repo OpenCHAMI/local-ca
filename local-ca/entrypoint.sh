@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 
+# Adapted from the smallstep example entrypoint at: https://github.com/smallstep/certificates/blob/master/docker/entrypoint.sh
+
 # Paraphrased from:
 # https://github.com/influxdata/influxdata-docker/blob/0d341f18067c4652dfa8df7dcb24d69bf707363d/influxdb/2.0/entrypoint.sh
 # (a repo with no LICENSE.md)
@@ -76,7 +78,19 @@ function step_ca_init () {
     echo "🤫 This will only be displayed once."
     shred -u $STEPPATH/provisioner_password
     mv $STEPPATH/password $PWDPATH
+    
+    # Copy the CA certificates to a volume that can be shared for future interaction with the CA
+    # First we put the root ca cert and intermediate cert in the easiest place to find it in the volume
     cp /home/step/certs/root_ca.crt /root-ca/root_ca.crt
+    cp /home/step/certs/intermediate_ca.crt /root-ca/intermediate_ca.crt
+    # Then we set up the files in the right place for the step client to find them
+    mkdir -p /root-ca/step/certs
+    cp /home/step/certs/root_ca.crt /root-ca/step/certs/root_ca.crt
+    cp /home/step/certs/intermediate_ca.crt /root-ca/step/certs/intermediate_ca.crt
+    # Finally, we copy the step config files to the volume without exposing any secrets
+    mkdir -p /root-ca/step/config
+    cp /home/step/config/ca.json /root-ca/step/config/ca.json
+    cp /home/step/config/defaults.json /root-ca/step/config/defaults.json
     echo "🔒 Your CA is ready to go!"
 }
 
