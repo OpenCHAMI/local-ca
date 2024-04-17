@@ -58,3 +58,5 @@ This container can be used with docker compose following this example:
       - certbot-challenges:/var/www/html/
       - step-root-ca:/root-ca:ro
 ```
+
+Build Status: [![build and publish containers](https://github.com/OpenCHAMI/local-ca/actions/workflows/build_containers.yml/badge.svg)](https://github.com/OpenCHAMI/local-ca/actions/workflows/build_containers.yml)

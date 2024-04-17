@@ -1,5 +1,6 @@
 name: build and publish containers
 on:
+  workflow_dispatch:
   push:
     tags:
       - v*
