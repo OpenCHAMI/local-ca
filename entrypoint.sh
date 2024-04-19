@@ -83,6 +83,7 @@ function step_ca_init () {
     # First we put the root ca cert and intermediate cert in the easiest place to find it in the volume
     cp /home/step/certs/root_ca.crt /root-ca/root_ca.crt
     cp /home/step/certs/intermediate_ca.crt /root-ca/intermediate_ca.crt
+    chmod 444 /root-ca/*.crt
     # Then we set up the files in the right place for the step client to find them
     mkdir -p /root-ca/step/certs
     cp /home/step/certs/root_ca.crt /root-ca/step/certs/root_ca.crt
