@@ -1,0 +1,7 @@
+FROM cgr.dev/chainguard/wolfi-base
+#install step dependencies
+RUN apk add --no-cache curl openssl acme.sh
+
+RUN mkdir /root/.acme.sh
+
+ENTRYPOINT [ "/usr/bin/acme.sh" ]

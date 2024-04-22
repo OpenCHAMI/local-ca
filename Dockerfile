@@ -1,13 +1,13 @@
 FROM cgr.dev/chainguard/wolfi-base
 #install step dependencies
-RUN apk add --no-cache wget step step-ca bash acme.sh
+RUN apk add --no-cache wget step step-ca bash
 
 ENV CONFIGPATH="/home/step/config/ca.json"
 ENV PWDPATH="/home/step/secrets/password"
 ENV STEPPATH="/home/step"
 
 RUN mkdir /root_ca
-RUN mkdir /root/.acme.sh
+
 
 VOLUME ["/home/step", "/root-ca"]
 
