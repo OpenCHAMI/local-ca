@@ -81,17 +81,17 @@ function step_ca_init () {
     
     # Copy the CA certificates to a volume that can be shared for future interaction with the CA
     # First we put the root ca cert and intermediate cert in the easiest place to find it in the volume
-    cp /home/step/certs/root_ca.crt /root-ca/root_ca.crt
-    cp /home/step/certs/intermediate_ca.crt /root-ca/intermediate_ca.crt
-    chmod 444 /root-ca/*.crt
+    cp /home/step/certs/root_ca.crt /root_ca/root_ca.crt
+    cp /home/step/certs/intermediate_ca.crt /root_ca/intermediate_ca.crt
+    chmod 444 /root_ca/*.crt
     # Then we set up the files in the right place for the step client to find them
-    mkdir -p /root-ca/step/certs
-    cp /home/step/certs/root_ca.crt /root-ca/step/certs/root_ca.crt
-    cp /home/step/certs/intermediate_ca.crt /root-ca/step/certs/intermediate_ca.crt
+    mkdir -p /root_ca/step/certs
+    cp /home/step/certs/root_ca.crt /root_ca/step/certs/root_ca.crt
+    cp /home/step/certs/intermediate_ca.crt /root_ca/step/certs/intermediate_ca.crt
     # Finally, we copy the step config files to the volume without exposing any secrets
-    mkdir -p /root-ca/step/config
-    cp /home/step/config/ca.json /root-ca/step/config/ca.json
-    cp /home/step/config/defaults.json /root-ca/step/config/defaults.json
+    mkdir -p /root_ca/step/config
+    cp /home/step/config/ca.json /root_ca/step/config/ca.json
+    cp /home/step/config/defaults.json /root_ca/step/config/defaults.json
     echo "🔒 Your CA is ready to go!"
 }
 

@@ -6,7 +6,7 @@ ENV CONFIGPATH="/home/step/config/ca.json"
 ENV PWDPATH="/home/step/secrets/password"
 ENV STEPPATH="/home/step"
 
-RUN mkdir /root-ca
+RUN mkdir /root_ca
 RUN mkdir /root/.acme.sh
 
 VOLUME ["/home/step", "/root-ca"]
