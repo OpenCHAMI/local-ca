@@ -42,7 +42,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          platforms: linux/amd64,linux/arm64,darwin/arm64
+          platforms: linux/amd64,linux/arm64
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
@@ -79,7 +79,7 @@ jobs:
         - name: Build and push
           uses: docker/build-push-action@v5
           with:
-            platforms: linux/amd64,linux/arm64,darwin/arm64
+            platforms: linux/amd64,linux/arm64
             context: .
             file: Dockerfile.acme
             push: ${{ github.event_name != 'pull_request' }}
