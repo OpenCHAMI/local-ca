@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: © 2024 Triad National Security, LLC.
+SPDX-FileCopyrightText: © 2026 OpenCHAMI a Series of LF Projects, LLC
+
+SPDX-License-Identifier: MIT
+-->
+
 # Local ACME Certificate authority
 
 This repo builds a container that can be used in a docker-compose environment to create a disposable CA and issue/update certificates using certbot.

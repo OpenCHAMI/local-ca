@@ -1,4 +1,8 @@
 #!/bin/bash
+# SPDX-FileCopyrightText: © 2024 Triad National Security, LLC.
+# SPDX-FileCopyrightText: © 2026 OpenCHAMI a Series of LF Projects, LLC
+#
+# SPDX-License-Identifier: MIT
 set -eo pipefail
 
 # Adapted from the smallstep example entrypoint at: https://github.com/smallstep/certificates/blob/master/docker/entrypoint.sh
