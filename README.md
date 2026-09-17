@@ -7,6 +7,8 @@ SPDX-License-Identifier: MIT
 
 # Local ACME Certificate authority
 
+[![build](https://github.com/OpenCHAMI/local-ca/actions/workflows/build.yml/badge.svg)](https://github.com/OpenCHAMI/local-ca/actions/workflows/build.yml)
+
 This repo builds a container that can be used in a docker-compose environment to create a disposable CA and issue/update certificates using certbot.
 
 It is heavily informed by the smallstep authors via https://github.com/smallstep/certificates/blob/master/docker/entrypoint.sh
@@ -66,4 +68,21 @@ This container can be used with docker compose following this example:
       - step-root-ca:/root_ca:ro
 ```
 
-Build Status: [![build and publish containers](https://github.com/OpenCHAMI/local-ca/actions/workflows/build_containers.yml/badge.svg)](https://github.com/OpenCHAMI/local-ca/actions/workflows/build_containers.yml)
+## Quadlet Packaging
+
+`packaging/` builds the `local-ca-quadlet` RPM, which ships the Podman Quadlet
+units for running this CA in an OpenCHAMI deployment. The image tag is pinned
+to the RPM version.
+
+```bash
+make rpm-build
+sudo dnf install ./dist/rpmbuild/RPMS/noarch/local-ca-quadlet-*.rpm
+printf '%s' "$(openssl rand -base64 30)" | podman secret create step_ca_init_password -
+sudo systemctl daemon-reload && sudo systemctl start step-ca.service
+```
+
+Override settings with a drop-in under
+`/etc/containers/systemd/step-ca.container.d/`, not by editing the packaged
+one. Note the `DOCKER_STEPCA_INIT_*` values apply on first start only:
+changing them later requires discarding the `step-ca-home` volume, which mints
+a new root and invalidates every issued certificate.
