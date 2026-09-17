@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: © 2024 Triad National Security, LLC.
+# SPDX-FileCopyrightText: © 2026 OpenCHAMI a Series of LF Projects, LLC
+#
+# SPDX-License-Identifier: MIT
+
+dist/
+
+# Local CA state and secrets
+root_ca/
+step/
+*.crt
+*.key
+*.pem
+password
+provisioner_password
+
+# Docker
+.env
+docker-compose.override.yml
+
+# AI coding agent artifacts
+CLAUDE/
+.omo/
+graphify-out/cache/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
