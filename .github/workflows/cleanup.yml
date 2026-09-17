@@ -12,4 +12,4 @@ permissions:
 
 jobs:
   cleanup:
-    uses: OpenCHAMI/github-actions/.github/workflows/pr-registry-cleanup.yml@0874861a34e9835641ae96fea2904643cc727824 # seantronsen/feat/add-missing-workflows
+    uses: OpenCHAMI/github-actions/.github/workflows/pr-registry-cleanup.yml@8143942058adef1ce81a96a11ae9074358df4fbd # v3.11
