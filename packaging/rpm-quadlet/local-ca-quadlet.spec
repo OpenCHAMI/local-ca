@@ -38,7 +38,11 @@ local step-ca certificate authority as part of an OpenCHAMI deployment.
 # systemd files
 install -d %{buildroot}/usr/share/containers/systemd
 
-grep -q '@IMAGE_TAG@' step-ca.container
+if ! grep -q '@IMAGE_TAG@' step-ca.container; then
+    echo "error: @IMAGE_TAG@ placeholder missing from step-ca.container" >&2
+    exit 1
+fi
+
 sed "s|@IMAGE_TAG@|v%{version}|" step-ca.container \
     | install -m 644 /dev/stdin %{buildroot}/usr/share/containers/systemd/step-ca.container
 
