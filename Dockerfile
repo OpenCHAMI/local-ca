@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: © 2024 Triad National Security, LLC.
+# SPDX-FileCopyrightText: © 2026 OpenCHAMI a Series of LF Projects, LLC
+#
+# SPDX-License-Identifier: MIT
+
 FROM cgr.dev/chainguard/wolfi-base
 #install step dependencies
 RUN apk add --no-cache wget step step-ca bash
